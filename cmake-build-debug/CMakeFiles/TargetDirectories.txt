@@ -1,0 +1,3 @@
+/Users/gareth/Documents/C++/Data structures/C3/Polynomials-DynamicArray/cmake-build-debug/CMakeFiles/Polynomials_DynamicArray.dir
+/Users/gareth/Documents/C++/Data structures/C3/Polynomials-DynamicArray/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/gareth/Documents/C++/Data structures/C3/Polynomials-DynamicArray/cmake-build-debug/CMakeFiles/rebuild_cache.dir
