@@ -20,17 +20,32 @@ public:
     ~Polynomial();
 
     Polynomial& operator = (const Polynomial& source); // 2
-    Polynomial& operator =(double a0); // 3
+    Polynomial& operator = (double a0); // 3
 
     void addToCoef(double amount, unsigned int k);
     void assignCoef(double new_coefficient, unsigned int k);
     void clear( );
     void reserve(size_t number);
 
+    double coefficient(unsigned int k) const;
+    unsigned int getDegree() const;
+    unsigned int nextTerm(unsigned int k) const;
+
+    double eval(double x) const;
+    double operator () (double x) const;
+
+    Polynomial operator+(const Polynomial& b) const;
+
+    Polynomial operator-(const Polynomial& b) const;
+
+    Polynomial operator*(const Polynomial& b) const;
+
+//    Polynomial& merge (Polynomial a, Polynomial b) const;
+
 private:
     sizeType k;
     term *co;
-    sizeType degree = 0;
+    unsigned int degree = 0;
 
 };
 

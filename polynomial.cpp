@@ -1,6 +1,7 @@
 #include "polynomial.h"
 #include <iostream>
 #include <cstdlib>
+#include <math.h>
 
 using namespace std;
 
@@ -85,3 +86,129 @@ void Polynomial::reserve(size_t number) {
     co = biggerPolly;
     degree = number;
 }
+
+double Polynomial::coefficient(unsigned int k) const {
+    return co[k];
+}
+unsigned int Polynomial::getDegree() const {
+    return degree;
+}
+unsigned int Polynomial::nextTerm(unsigned int k) const {
+    if(k+1 <= degree)
+        return co[k+1];
+    else
+        throw out_of_range("We dinny have that yin here friend, sorry");
+}
+
+double Polynomial::eval(double x) const {
+    double eval = 0;
+    for (sizeType i = 0; i < degree; ++i) {
+        eval += pow((co[i]*x), k);
+    }
+    return eval;
+}
+
+double Polynomial::operator () (double x) const {
+    double eval = 0;
+    for (sizeType i = 0; i < degree; ++i) {
+        eval += pow((co[i]*x), k);
+    }
+    return eval;
+}
+
+Polynomial Polynomial::operator+(const Polynomial& b) const {
+    Polynomial result;
+    const Polynomial* bigYin;
+    const Polynomial* smallYin;
+
+    if (this->degree >= b.degree) {
+        bigYin = this;
+        smallYin = &b;
+    } else {
+        bigYin = &b;
+        smallYin = this;
+    }
+
+    int index = 0;
+    for (index; index <= smallYin->degree; ++index) {
+        result.co[index] = bigYin->co[index] + smallYin->co[index];
+    }
+
+    for (index; index <= bigYin->degree; ++index) {
+        result.co[index] = bigYin->co[index];
+    }
+    return result;
+}
+
+Polynomial Polynomial::operator-(const Polynomial& b) const {
+    Polynomial result;
+    const Polynomial* bigYin;
+    const Polynomial* smallYin;
+
+    if (this->degree >= b.degree) {
+        bigYin = this;
+        smallYin = &b;
+    } else {
+        bigYin = &b;
+        smallYin = this;
+    }
+
+    int index = 0;
+    for (index; index <= smallYin->degree; ++index) {
+        result.co[index] = bigYin->co[index] - smallYin->co[index];
+    }
+
+    for (index; index <= bigYin->degree; ++index) {
+        result.co[index] = bigYin->co[index];
+    }
+    return result;
+}
+
+Polynomial Polynomial::operator*(const Polynomial& b) const {
+    Polynomial result;
+    const Polynomial* bigYin;
+    const Polynomial* smallYin;
+
+    if (this->degree >= b.degree) {
+        bigYin = this;
+        smallYin = &b;
+    } else {
+        bigYin = &b;
+        smallYin = this;
+    }
+
+    int index = 0;
+    for (index; index <= smallYin->degree; ++index) {
+        result.co[index] = bigYin->co[index] * smallYin->co[index];
+    }
+
+    for (index; index <= bigYin->degree; ++index) {
+        result.co[index] = bigYin->co[index];
+    }
+    return result;
+}
+
+
+//Polynomial& Polynomial::merge (Polynomial a, Polynomial b) const {
+//    Polynomial merged;
+//    const Polynomial* bigYin;
+//    const Polynomial* smallYin;
+//
+//    if (a.degree >= b.degree) {
+//        bigYin = &a;
+//        smallYin = &b;
+//    } else {
+//        bigYin = &b;
+//        smallYin = &a;
+//    }
+//
+//    int index = 0;
+//    for (index; index <= smallYin->degree; ++index) {
+//        merged.co[index] = bigYin->co[index] + smallYin->co[index];
+//    }
+//
+//    for (index; index <= bigYin->degree; ++index) {
+//        merged.co[index] = bigYin->co[index];
+//    }
+//    return merged;
+//}
