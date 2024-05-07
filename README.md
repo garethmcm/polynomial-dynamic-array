@@ -32,9 +32,9 @@ polynomial( ); // Default constructor polynomial(double a0); // Set the x0 coeff
 
 The default constructor creates a polynomial with all zero coefficients. The sec- ond constructor creates a polynomial with the specified parameter as the coeffi- cient of the x0 term, and all other coefficients are zero. For example:
 
-	polynomial p(4.2); 			// p has only one nonzero term, 4.2x0, which is the 
-						// same as the number 4.2 (since x0 is defined as
-						// equal to 1).
+	polynomial p(4.2); 		// p has only one nonzero term, 4.2x0, which is the 
+					// same as the number 4.2 (since x0 is defined as
+					// equal to 1).
 
 
 B. Assignment operator
@@ -88,7 +88,7 @@ G. Arithmetic operators
 
 You can overload the binary arithmetic operators of addition, subtraction, and multiplication to add, subtract, and multiply two poly- nomials in the usual manner. (Division is not possible, because it can result in fractional exponents.) For example:
 
-	Suppose 	q = 2x3 + 4x2 + 3x + 1
+	Suppose 		q = 2x3 + 4x2 + 3x + 1
 
 	and
 				r = 7x2 + 6x + 5
