@@ -1,14 +1,14 @@
 This is code for polynomials implemented using dynamic arrays as per an exercise in Data structures and Other Objects in C++ by Michael Main and Walter Savitch.
 
-Below is an outline of the assignment for context:
+Below is an outline of the assignment for context (please note that this is an ongoing project and some of the requirements are currently outstanding):
 
 A one-variable polynomial is an arithmetic expression of the form:
 
-	akxk+...+a2x2 +a1x1 +a0x0
+	akxk+...+ a2x2 + a1x1 + a0x0
 
 The highest exponent, k, is called the degree of the polynomial, and the constants a0, a1, ... are the coefficients. For example, here is a polynomial with degree 3
 
-	0.3x3 +0.5x2 +(–0.9)x1 +1.0x0
+	0.3x3 + 0.5x2 + (–0.9)x1 + 1.0x0
 
 Each individual term of a polynomial consists of a real
 number as a coefficient (such as 0.3), the variable x, and a non-negative integer as an exponent. The x1 term is usually written with just an x rather than x1; the x0 term is usually written with just the coefficient (since x0 is always defined to be 1); and a negative coefficient may also be written with a subtraction sign, so another way to write the same polynomial is:
@@ -29,9 +29,10 @@ The rest of this section lists some member functions and nonmember func- tions t
 A. Constructors and destructor
 
 polynomial( ); // Default constructor polynomial(double a0); // Set the x0 coefficient only polynomial(const polynomial& source); // Copy constructor ~polynomial( );
+
 The default constructor creates a polynomial with all zero coefficients. The sec- ond constructor creates a polynomial with the specified parameter as the coeffi- cient of the x0 term, and all other coefficients are zero. For example:
 
-	polynomial p(4.2); 	// p has only one nonzero term, 4.2x0, which is the 
+	polynomial p(4.2); 			// p has only one nonzero term, 4.2x0, which is the 
 						// same as the number 4.2 (since x0 is defined as
 						// equal to 1).
 
@@ -39,6 +40,7 @@ The default constructor creates a polynomial with all zero coefficients. The sec
 B. Assignment operator
 
 polynomial& operator = (const polynomial& source);
+
 This is the usual overloaded assignment operator, with one change: The return type is polynomial& rather than void. This return type is similar to an ordi- nary polynomial, but the extra symbol & makes it a reference return type, similar to the return type ostream& of our output operators. The complete details of a reference return type are beyond this project. For your implementation, you should know two facts:
 
 1. The function implementation should return the object that activated the assignment. This is accomplished with the keyword this. The syntax is: return *this; , which means “return the object that this points to.” Since this always points to the object that activates the function, the return statement has the effect that we need.
@@ -47,7 +49,8 @@ Remember to have your implementation check for a possible self-assignment.
 
 C. A second assignment operator
 
-polynomial& operator =(double a0);
+	polynomial& operator = (double a0);
+
 For a polynomial b, this assignment can be activated in a statement such as b = 4.2 . The double number, 4.2, becomes the argument a0 for this assign- ment. The implementation will use this number as the coefficient for the x0 term, and all other coefficients are set to zero.
 
 You might notice that this second version of the assignment operator isn’t entirely needed. Even without this assignment operator, we could write an assignment b = 4.2 ; in this case, the compiler would apply the polynomial constructor to the number 4.2 (creating the polynomial 4.2x0), and then this poly- nomial would be assigned to b. However, writing an explicit assignment operator to allow b = 4.2 is generally more efficient because we avoid the overhead of the constructor-generated conversion.
@@ -86,9 +89,11 @@ G. Arithmetic operators
 You can overload the binary arithmetic operators of addition, subtraction, and multiplication to add, subtract, and multiply two poly- nomials in the usual manner. (Division is not possible, because it can result in fractional exponents.) For example:
 
 	Suppose 	q = 2x3 + 4x2 + 3x + 1
+
 	and
 				r = 7x2 + 6x + 5
-	Then: 		q + r = 2x3 + 11x2 + 9x + 6 
+
+	Then: 				q + r = 2x3 + 11x2 + 9x + 6 
 				q – r = 2x3 – 3x2 – 3x–4
 				q × r = 14x5 + 40x4 + 55x3 + 45x2 +21x + 5
 
